@@ -47,7 +47,7 @@ A Generative AI-based application that allows users to create personalized short
      **.streamlit/secrets.toml**
 
      ```toml
-     GEMINI_API_KEY = "your_google_genai_api_key"
+  GEMINI_API_KEY = "AIzaSyBkxoQmYb7FXqyWXBQK_a908D8G74A55t4"
      ```
 
 ## Running the App
