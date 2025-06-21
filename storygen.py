@@ -1,31 +1,25 @@
-import openai
 import os
-import streamlit as st  
+import streamlit as st
+import google.generativeai as genai
 
-def get_openai_api_key():
-    """Get OpenAI API key from Streamlit secrets or environment variables."""
+def get_gemini_api_key():
+    """Get Gemini API key from Streamlit secrets or environment variables."""
     try:
-        return st.secrets["OPENAI_API_KEY"]
+        return st.secrets["GEMINI_API_KEY"]
     except (KeyError, FileNotFoundError):
-        api_key = os.getenv("OPENAI_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            st.error("🔑 OPENAI_API_KEY not found. Please add it to your Streamlit secrets or .env file.")
+            st.error("🔑 GEMINI_API_KEY not found. Please add it to your Streamlit secrets or .env file.")
             st.stop()
         return api_key
 
-openai.api_key = get_openai_api_key()
+# Configure Gemini
+genai.configure(api_key=get_gemini_api_key())
+model = genai.GenerativeModel("models/gemini-2.5-flash")
 
 def generate_story(prompt):
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a creative writing assistant."},
-                {"role": "user", "content": f"Write a short story based on this prompt: {prompt}"}
-            ],
-            max_tokens=500,
-            temperature=0.8
-        )
-        return response.choices[0].message['content'].strip()
+        response = model.generate_content(f"Write a short story based on this prompt: {prompt}")
+        return response.text.strip()
     except Exception as e:
         return f"Error: {e}"
