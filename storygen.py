@@ -1,6 +1,6 @@
 import openai
 import os
-import streamlit as st  # required to use st.secrets safely
+import streamlit as st  
 
 def get_openai_api_key():
     """Get OpenAI API key from Streamlit secrets or environment variables."""
