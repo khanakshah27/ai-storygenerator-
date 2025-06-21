@@ -1,5 +1,5 @@
 import streamlit as st
-from story_generator import generate_story
+from storygen import generate_story
 
 st.set_page_config(page_title="AI Story Generator", page_icon="📖")
 st.title("📖 AI Story Generator")
