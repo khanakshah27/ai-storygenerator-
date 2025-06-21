@@ -17,9 +17,12 @@ if st.button("✨ Generate Story"):
         story = generate_story(full_prompt)
         st.markdown("### 📖 Your Story")
         st.write(story)
+  if st.button("💡 Show Moral or Summary"):
+        with st.spinner("Extracting insight..."):
+            moral = generate_moral_or_summary(st.session_state["story"])
+            st.session_state["moral"] = moral
 
-        if st.button("💡 Show Moral or Summary"):
-            with st.spinner("Extracting insight..."):
-                moral = generate_moral_or_summary(story)
-                st.markdown("### 🌟 Moral / Summary")
-                st.write(moral)
+# Display moral if it exists
+if "moral" in st.session_state and st.session_state["moral"]:
+    st.markdown("### 🌟 Moral / Summary")
+    st.write(st.session_state["moral"])
