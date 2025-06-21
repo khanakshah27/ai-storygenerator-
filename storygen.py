@@ -1,7 +1,19 @@
 import openai
 import os
+import streamlit as st  # required to use st.secrets safely
 
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Use environment variable
+def get_openai_api_key():
+    """Get OpenAI API key from Streamlit secrets or environment variables."""
+    try:
+        return st.secrets["OPENAI_API_KEY"]
+    except (KeyError, FileNotFoundError):
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            st.error("🔑 OPENAI_API_KEY not found. Please add it to your Streamlit secrets or .env file.")
+            st.stop()
+        return api_key
+
+openai.api_key = get_openai_api_key()
 
 def generate_story(prompt):
     try:
