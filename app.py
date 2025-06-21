@@ -1,7 +1,7 @@
 import streamlit as st
 from storygen import generate_story, generate_moral_or_summary
 
-st.set_page_config(page_title="Your AI Story Crafter page_icon="📚")
+st.set_page_config(page_title="Your AI Story Crafter")
 st.title("Your AI Story Crafter")
 
 st.markdown("Generate unique short stories with genre, tone, and moral!")
