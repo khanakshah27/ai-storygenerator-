@@ -24,8 +24,8 @@ A Generative AI-based application that allows users to create personalized short
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/ai-story-crafter.git
-   cd ai-story-crafter
+   git clone https://github.com/khanakshah27/ai-storygenerator-
+   cd ai-storygenerator-
    ```
 
 2. **Install dependencies**:
