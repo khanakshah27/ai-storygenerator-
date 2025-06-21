@@ -22,6 +22,6 @@ if st.button("✨ Generate Story"):
             moral = generate_moral_or_summary(st.session_state["story"])
             st.session_state["moral"] = moral
 
-if "moral" in st.session_state and st.session_state["moral"]:
+  if "moral" in st.session_state and st.session_state["moral"]:
         st.markdown("### 🌟 Moral / Summary")
         st.write(st.session_state["moral"])
