@@ -9,11 +9,10 @@ def get_gemini_api_key():
     except (KeyError, FileNotFoundError):
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            st.error("🔑 GEMINI_API_KEY not found. Please add it to secrets.toml or .env.")
+            st.error("GEMINI_API_KEY not found. Please add it to secrets.toml or .env.")
             st.stop()
         return api_key
 
-# Configure Gemini API
 genai.configure(api_key=get_gemini_api_key())
 model = genai.GenerativeModel("models/gemini-2.5-flash")
 
