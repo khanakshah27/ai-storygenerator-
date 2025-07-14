@@ -11,7 +11,7 @@ tone = st.selectbox("Select a tone", ["Wholesome", "Dark", "Humorous", "Emotiona
 
 user_prompt = st.text_area("Your story idea", placeholder="e.g., A robot learns to paint...")
 
-if st.button("✨ Generate Story"):
+if st.button("Generate Story"):
     full_prompt = f"Write a {tone.lower()} short story in the {genre.lower()} genre based on this idea: {user_prompt}"
     story = generate_story(full_prompt)
     st.session_state["story"] = story  
@@ -19,14 +19,14 @@ if st.button("✨ Generate Story"):
     st.success("Story generated!")
 
 if "story" in st.session_state:
-    st.markdown("### 📖 Your Story")
+    st.markdown("Your Story")
     st.write(st.session_state["story"])
 
-    if st.button("💡 Show Moral or Summary"):
+    if st.button("Show Moral or Summary"):
         with st.spinner("Extracting insight..."):
             moral = generate_moral_or_summary(st.session_state["story"])
             st.session_state["moral"] = moral
 
 if "moral" in st.session_state and st.session_state["moral"]:
-    st.markdown("### 🌟 Moral / Summary")
+    st.markdown("Moral / Summary")
     st.write(st.session_state["moral"])
